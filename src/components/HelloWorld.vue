@@ -9,9 +9,8 @@ const count = ref(0)
 </script>
 
 <template>
-  <h1 class="text-xl "> Group 6</h1>
- 
-</template>
+  <h1>Group 6</h1>
+ </template>
 
 <style scoped>
 .read-the-docs {
