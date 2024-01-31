@@ -21,10 +21,15 @@ import Navigation from "./Navigation.vue";
     >
       <p># How to Contribute/ Getting Started</p>
       <ul class="list-disc list-inside ml-4">
-        <li>Navigate to your local machine</li>
-        <li>Create a folder under Documents called DataScience</li>
-        <li>...</li>
-        <!-- Add more steps as needed -->
+        <li>
+          Navigate to this
+          <a
+            href="https://github.com/JosephRidge/ClimateChange-GHG"
+            target="_blank"
+            class="text-blue-400 underline font-bold"
+            >repository</a
+          >
+        </li>
       </ul>
     </blockquote>
 
@@ -46,6 +51,7 @@ import Navigation from "./Navigation.vue";
       <a
         href="https://www.sv-europe.com/crisp-dm-methodology/"
         class="text-blue-500"
+        target="_blank"
         >CRISP-DM</a
       >
       )
@@ -91,14 +97,16 @@ import Navigation from "./Navigation.vue";
         href="https://github.com/JosephRidge/ClimateChange-GHG"
         class="text-blue-500"
         target="_blank"
-        >Data Analysis </a>
+        >Data Analysis
+      </a>
     </li>
     <li>
       <a
         href="https://github.com/JosephRidge/climate-change-ghg-dashboard"
         class="text-blue-500"
         target="_blank"
-        >Dashboard </a>
+        >Dashboard
+      </a>
     </li>
     <h2 class="text-2xl font-bold mb-4">Thanks!</h2>
     <p class="mb-6">🐝 Be Awesome...🐝 Be kind!</p>
