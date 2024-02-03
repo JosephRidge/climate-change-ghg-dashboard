@@ -10,11 +10,13 @@
   },
   "dependencies": {
     "@vue-leaflet/vue-leaflet": "^0.6.1",
+    "chart.js": "^4.4.1",
     "firebase": "^10.7.2",
     "leaflet": "1.7.1",
     "leaflet.markercluster": "^1.5.3",
-    "vue-router": "^4.2.5",
-    "vue": "^3.3.11"
+    "papaparse": "^5.4.1",
+    "vue": "^3.3.11",
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.5.2",
