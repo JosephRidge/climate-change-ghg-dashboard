@@ -11,6 +11,7 @@ export default {
   data() {
     return {
       data: [],
+      dataPresent: false,
       treeCoverLoss: [],
       myChartCanvas: "",
       treeCoverLossData:
@@ -35,6 +36,7 @@ export default {
       return color;
     },
     async loadCSVAndCreateChart() {
+      this.dataPresent = false
       const canvas = this.myChartCanvas.getContext("2d");
       const response = await fetch(this.treeCoverLossData);
       const data = await response.text();
@@ -42,6 +44,7 @@ export default {
 
       // Remove the last row as it might be incomplete or erroneous
       parsedData.data.pop();
+      this.dataPresent = true
 
       // Extract unique years from the data
       const years = [
@@ -141,6 +144,9 @@ export default {
     </div>
 
     <hr />
+    <div>
+      <img v-show="!dataPresent" src="../assets/Loader.gif" alt="funny GIF" class="mx-auto" width="20%" />
+    </div>
     <div class="chart">
       <canvas id="myChartCanvas"></canvas>
     </div>
@@ -154,20 +160,12 @@ export default {
     <div class="text-xl text-green-800 my-2">Want Access to the data used?</div>
     <ul class="list-disc list-inside ml-4">
       <li>
-        <a
-          href="https://www.globalforestwatch.org/dashboards/country/KEN/?map=eyJjYW5Cb3VuZCI6dHJ1ZX0%3D"
-          target="_blank"
-          class="hover:underline hover:pointer"
-          >Forest Cover</a
-        >
+        <a href="https://www.globalforestwatch.org/dashboards/country/KEN/?map=eyJjYW5Cb3VuZCI6dHJ1ZX0%3D" target="_blank"
+          class="hover:underline hover:pointer">Forest Cover</a>
       </li>
       <li>
-        <a
-          href="https://www.researchgate.net/figure/Forest-coverage-of-land-area-Data-source-World-Bank-55_fig3_329132267"
-          target="_blank"
-          class="hover:underline hover:pointer"
-          >Forest Cover Research</a
-        >
+        <a href="https://www.researchgate.net/figure/Forest-coverage-of-land-area-Data-source-World-Bank-55_fig3_329132267"
+          target="_blank" class="hover:underline hover:pointer">Forest Cover Research</a>
       </li>
     </ul>
   </div>
