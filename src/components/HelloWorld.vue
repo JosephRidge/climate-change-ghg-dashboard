@@ -3,12 +3,12 @@ import Navigation from "./Navigation.vue";
 </script>
 
 <template>
-  <div class="container mx-auto py-8">
-    <h1 class="text-3xl font-bold mb-4">
+  <div class="mx-16 pb-8">
+    <h1 class="text-4xl text-green-800 font-bold my-4">
       Climate Change: A Threat to Our Environment
     </h1>
 
-    <p class="mb-6">
+    <p class="text-base text-green-800 my-4">
       Climate change is one of the most pressing issues facing our planet today.
       It is caused by the release of greenhouse gases into the atmosphere, which
       trap heat and cause the planet to warm. This warming is having a number of
@@ -33,8 +33,8 @@ import Navigation from "./Navigation.vue";
       </ul>
     </blockquote>
 
-    <h2 class="text-2xl font-bold mb-4">Objectives</h2>
-    <ul class="list-disc list-inside mb-6">
+    <h2 class="text-2xl text-green-800 font-bold mb-4">Objectives</h2>
+    <ul class="list-disc list-inside mb-6 text-green-800">
       <li>
         Develop machine learning models to predict future greenhouse gas
         emissions based on historical data.
@@ -46,25 +46,23 @@ import Navigation from "./Navigation.vue";
       </li>
     </ul>
 
-    <h2 class="text-2xl font-bold mb-4">
-      Methodology (
-      <a
+    <h2 class="text-2xl text-green-800 font-bold mb-4">
+      Methodology (<a
         href="https://www.sv-europe.com/crisp-dm-methodology/"
         class="text-blue-500"
         target="_blank"
         >CRISP-DM</a
-      >
-      )
+      >)
     </h2>
 
     <blockquote
-      class="border-l-4 border-blue-500 italic text-gray-700 pl-4 py-2 mb-6"
+      class="border-l-4 border-green-500 italic text-green-800 pl-4 py-2 mb-6"
     >
       <p>Data Collection (CRISP-DM: Business Understanding):</p>
       <!-- Add other methodology steps similarly -->
     </blockquote>
 
-    <h2 class="text-2xl font-bold mb-4">Data Sources</h2>
+    <h2 class="text-2xl font-bold mb-4 text-green-800">Data Sources</h2>
     <ul class="list-disc list-inside mb-6">
       <li>
         <a
@@ -91,7 +89,9 @@ import Navigation from "./Navigation.vue";
         >
       </li>
     </ul>
-    <h2 class="text-2xl font-bold mb-4">Relevant Github Repository</h2>
+    <h2 class="text-2xl font-bold mb-4 text-green-800">
+      Relevant Github Repository
+    </h2>
     <li>
       <a
         href="https://github.com/JosephRidge/ClimateChange-GHG"
@@ -108,13 +108,11 @@ import Navigation from "./Navigation.vue";
         >Dashboard
       </a>
     </li>
-    <h2 class="text-2xl font-bold mb-4">Thanks!</h2>
-    <p class="mb-6">🐝 Be Awesome...🐝 Be kind!</p>
+    <h2 class="text-2xl font-bold my-4 text-green-800 text-center">Thanks!</h2>
+    <p class="mb-6 bg-amber-400 px-2 py-1 rounded-xl text-center font-bold">
+      🐝 Be Awesome...🐝 Be kind!
+    </p>
   </div>
 </template>
 
-<style scoped>
-.read-the-docs {
-  color: #888;
-}
-</style>
+<style scoped></style>
