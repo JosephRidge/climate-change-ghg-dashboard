@@ -12,6 +12,7 @@ export default {
     return {
       data: [],
       gases: [],
+      dataPresent:false,
       gmstEmissionsData: [],
       response:"",
       ghgChartCanvas: "",
@@ -35,6 +36,7 @@ export default {
       return color;
     },
     async loadCSVAndCreateChart() {
+        this.dataPresent = false
       const canvas = this.ghgChartCanvas.getContext("2d");
       const response = await fetch(this.ghgEmmissions);
       const data = await response.text();
@@ -44,6 +46,7 @@ export default {
       // Remove the last row as it might be incomplete or erroneous
       parsedData.data.pop();
       const kenyaData = parsedData.data.filter((row) => row.ISO3 === "KEN");
+      this.dataPresent = true
       // Extract unique years from the data
       const years = [
         ...new Set(
@@ -160,6 +163,15 @@ export default {
       </div>
 
       <hr />
+      <div>
+        <img
+          v-show="!dataPresent"
+          src="../assets/Loader.gif"
+          alt="funny GIF"
+          class="mx-auto"
+          width="20%"
+        />
+      </div>
       <div class="chart">
         <canvas id="ghgChartCanvas"></canvas>
       </div>

@@ -7,6 +7,7 @@ export default {
       data: [],
       treeCoverLoss: [],
       deforestrationDrivers: [],
+      dataPresent: false,
       chartCanvas: "",
       dataSource: this.dataSource,
     };
@@ -26,6 +27,7 @@ export default {
       return color;
     },
     async loadCSVAndCreateChart() {
+      this.dataPresent = false;
       const canvas = this.chartCanvas.getContext("2d");
       const response = await fetch(this.dataSource);
       const data = await response.text();
@@ -33,6 +35,8 @@ export default {
 
       // Remove the last row as it might be incomplete or erroneous
       parsedData.data.pop();
+      this.dataPresent = true;
+      this.response = data;
 
       // Extract unique years from the data
       const years = [
@@ -91,7 +95,7 @@ export default {
               return {
                 label: driver,
                 data: cumulativeTreeCoverLossByDriver[driver],
-                backgroundColor:this.getRandomColor(), // Assuming getRandomColor() is a function to generate random colors
+                backgroundColor: this.getRandomColor(), // Assuming getRandomColor() is a function to generate random colors
               };
             }
           ),
@@ -134,6 +138,15 @@ export default {
       Drivers of Deforestation
     </div>
     <hr />
+    <div>
+      <img
+        v-show="!dataPresent"
+        src="../assets/Loader.gif"
+        alt="funny GIF"
+        class="mx-auto"
+        width="20%"
+      />
+    </div>
     <div class="chart">
       <canvas id="chartCanvas"></canvas>
     </div>

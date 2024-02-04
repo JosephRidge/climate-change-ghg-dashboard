@@ -11,6 +11,7 @@ export default {
     return {
       data: [],
       components: [],
+      dataPresent:false,
       gmstCompositionEmissionsData: this.gmstCompositionEmissionsData,
       ghgCompositionChartCanvas: "",
     };
@@ -31,57 +32,60 @@ export default {
       return color;
     },
     async loadCSVAndCreateChart() {
-    const canvas = this.ghgCompositionChartCanvas.getContext("2d");
-    const response = await fetch(this.gmstCompositionEmissionsData);
+        this.dataPresent = false
+      const canvas = this.ghgCompositionChartCanvas.getContext("2d");
+      const response = await fetch(this.gmstCompositionEmissionsData);
       const data = await response.text();
-    const parsedData = Papa.parse(data, { header: true });
+      const parsedData = Papa.parse(data, { header: true });
 
-    // Remove the last row as it might be incomplete or erroneous
-    parsedData.data.pop();
-    const kenyaData = parsedData.data.filter((row) => row.ISO3 === "KEN");
+      // Remove the last row as it might be incomplete or erroneous
+      parsedData.data.pop();
+      const kenyaData = parsedData.data.filter((row) => row.ISO3 === "KEN");
 
-    // Extract components
-    const components = kenyaData.map((row) => row.Component);
+      this.dataPresent = true
+      // Extract components
+      const components = kenyaData.map((row) => row.Component);
 
-    // Count occurrences of each component
-    const componentCounts = {};
-    components.forEach((component) => {
+      // Count occurrences of each component
+      const componentCounts = {};
+      components.forEach((component) => {
         componentCounts[component] = (componentCounts[component] || 0) + 1;
-    });
+      });
 
-    // Construct datasets array
-    const datasets = [{
-        data: Object.values(componentCounts),
-        backgroundColor: [
+      // Construct datasets array
+      const datasets = [
+        {
+          data: Object.values(componentCounts),
+          backgroundColor: [
             "#29AB87",
             "#166534",
-            "#4BB599", 
+            "#4BB599",
             // Add more colors if needed
-        ],
-    }];
+          ],
+        },
+      ];
+      this.data = datasets;
 
-    // Construct labels array
-    const labels = Object.keys(componentCounts); 
-    console.log(labels)
+      // Construct labels array
+      const labels = Object.keys(componentCounts);
 
-    // Render chart
-    const chart = new Chart(canvas, {
+      // Render chart
+      const chart = new Chart(canvas, {
         type: "pie",
         data: {
-            labels: labels,
-            datasets: datasets,
+          labels: labels,
+          datasets: datasets,
         },
         options: {
-            responsive: true,
-            maintainAspectRatio: false,
+          responsive: true,
+          maintainAspectRatio: false,
         },
-    });
+      });
 
-    return chart;
-}
-
-}
-} 
+      return chart;
+    },
+  },
+};
 </script>
 
 <style>
@@ -96,18 +100,30 @@ export default {
   margin-right: 100px;
 }
 </style>
-<template> 
-    <div class="mt-6 mb-16">
-      <!--  graphs  -->
-      <hr />
-      <!-- Tree Cover Loss -->
-      <div class="text-xl text-green-500 my-4 font-bold capitalize">
-       Emissions Components
-      </div>
-      <div class="text-sm mb-6 text-green-700">
-        <span class="text-bold">NOTE: </span> Component specifies fossil emissions, Land use, land-use change, and forestry(LULUCF) emissions or total emissions of the gas.
+<template>
+  <div class="mt-6 mb-16">
+    <!--  graphs  -->
+    <hr />
+    <!-- Tree Cover Loss -->
+    <div class="text-xl text-green-500 my-4 font-bold capitalize">
+      Emissions Components
+    </div>
+    <div class="text-sm mb-6 text-green-700">
+      <span class="text-bold">NOTE: </span> Component specifies fossil
+      emissions, Land use, land-use change, and forestry(LULUCF) emissions or
+      total emissions of the gas.
 
       <hr class="my-4" />
+      <div>
+        <img
+          v-show="!dataPresent"
+          src="../assets/Loader.gif"
+          alt="funny GIF"
+          class="mx-auto"
+          width="20%"
+        />
+      </div>
+
       <div class="chart">
         <canvas id="ghgCompositionChartCanvas"></canvas>
       </div>
